@@ -34,7 +34,7 @@ describe Travis::Build::Script, :sexp do
   end
 
   it 'restores Cassandra 2.0.9' do
-    should include_sexp [:cmd, 'sudo rm -rf /usr/local/cassandra && curl -s https://s3.amazonaws.com/travis-cassandra-archives/cassandra-2.0.9-ubuntu-12.04-x86_64.tar.gz -o - | sudo tar xzf - -C /usr/local']
+    should include_sexp [:cmd, 'sudo rm -rf /usr/local/cassandra /var/lib/cassandra/* && curl -s https://s3.amazonaws.com/travis-cassandra-archives/cassandra-2.0.9-ubuntu-12.04-x86_64.tar.gz -o - | sudo tar xzf - -C /usr/local']
   end
 
   it 'restores Maven 3.2.5' do
