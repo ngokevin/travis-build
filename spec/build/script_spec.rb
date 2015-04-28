@@ -33,6 +33,14 @@ describe Travis::Build::Script, :sexp do
     should include_sexp [:export, ['PS4', '+']]
   end
 
+  it 'restores Cassandra 2.0.9' do
+    should include_sexp [:cmd, 'sudo rm -rf /usr/local/cassandra && curl -s https://s3.amazonaws.com/travis-cassandra-archives/cassandra-2.0.9-ubuntu-12.04-x86_64.tar.gz -o - | sudo tar xzf - -C /usr/local']
+  end
+
+  it 'restores Maven 3.2.5' do
+    should include_sexp [:cmd, 'curl -s https://s3.amazonaws.com/travis-maven-archives/maven-3.2.5-ubuntu-12.04-x86_64.tar.gz -o - | sudo tar xzf - -C /usr/local']
+  end
+
   it 'restarts MySQL' do
     should include_sexp [:cmd, 'test -S /var/run/mysqld/mysqld.sock || sudo service mysql restart']
   end

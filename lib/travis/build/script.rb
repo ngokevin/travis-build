@@ -107,6 +107,8 @@ module Travis
         end
 
         def prepare
+          apply :restore_cassandra
+          apply :restore_maven
           apply :restart_mysql
           apply :services
           apply :setup_apt_cache
