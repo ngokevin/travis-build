@@ -18,6 +18,8 @@ module Travis
         def announce
           super
           if uses_java?
+            sh.cmd 'echo $JAVA_OPTS'
+            sh.cmd 'java -XX:+PrintFlagsFinal -version 2>&1 | sort'
             sh.cmd 'java -version'
             sh.cmd 'javac -version'
           end
