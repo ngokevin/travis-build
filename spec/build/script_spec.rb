@@ -33,6 +33,14 @@ describe Travis::Build::Script, :sexp do
     should include_sexp [:export, ['PS4', '+']]
   end
 
+  it 'tunes glibc memory allocation parameters' do
+    should include_sexp [:export, ['MALLOC_ARENA_MAX',       '2'     ]]
+    should include_sexp [:export, ['MALLOC_MMAP_THRESHOLD_', '131072']]
+    should include_sexp [:export, ['MALLOC_MMAP_MAX_',       '131072']]
+    should include_sexp [:export, ['MALLOC_TOP_PAD_',        '131072']]
+    should include_sexp [:export, ['MALLOC_TRIM_THRESHOLD_', '65536' ]]
+  end
+
   it 'disables sudo' do
     should include_sexp [:cmd, %r(rm -f /etc/sudoers.d/travis)]
   end
