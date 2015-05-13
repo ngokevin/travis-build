@@ -17,10 +17,10 @@ module Travis
           sh.echo 'Please open any issues at https://github.com/travis-ci/travis-ci/issues/new', ansi: :red
 
           sh.echo 'Installing Rakudo (MoarVM)', ansi: :yellow
-          sh.cmd 'git clone https://github.com/rakudo/rakudo.git'
+          sh.cmd 'git clone https://github.com/rakudo/rakudo.git', fold: 'rakudo_checkout'
           sh.cmd 'cd rakudo'
-          sh.cmd 'sudo perl Configure.pl --backends=moar --gen-nqp --gen-moar --prefix=/usr'
-          sh.cmd 'sudo make install'
+          sh.cmd 'sudo perl Configure.pl --backends=moar --gen-nqp --gen-moar --prefix=/usr', timing: true, fold: 'perl6_configure'
+          sh.cmd 'sudo make install', timing: true, fold: 'perl6_install'
         end
 
         def setup
