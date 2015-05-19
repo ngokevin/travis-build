@@ -53,7 +53,8 @@ function travis_start_sauce_connect() {
   ${sc_dir}/bin/sc \
     ${sc_tunnel_id_arg} \
     -f ${sc_readyfile} \
-    -l ${sc_logfile} &
+    -l ${sc_logfile}
+    -t localhost &
   _SC_PID="$!"
 
   echo "Waiting for Sauce Connect readyfile"
